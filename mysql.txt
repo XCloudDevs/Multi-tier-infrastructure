@@ -1,0 +1,17 @@
+
+sudo -s
+yum update -y
+yum install mariadb-server
+systemctl start mariadb
+systemctl enable mariadb
+[option]
+
+sudo dnf install @mysql:8.0 -y
+sudo systemctl enable -now mysqld
+sudo systemctl status mysqld
+create user "admin"@"%" identified by "adminpass";
+grant all privileges on *.* to "admin"@"%" with grant option;
+flush privileges;
+select User,host from mysql.user;
+sudo vi /etc/selinux/config
+=enforcing
